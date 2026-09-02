@@ -167,7 +167,7 @@ img { max-width: 100%; display: block; }
   padding: 80px 0;
 }
 
-.section:nth-of-type(even) {
+.section--alt {
   background: var(--color-bg-alt);
 }
 
@@ -379,4 +379,78 @@ img { max-width: 100%; display: block; }
   .nav-links.open { display: flex; }
   .about-grid { grid-template-columns: 1fr; }
   .about-photo { max-width: 220px; margin: 0 auto; }
+}
+
+/* ---------------------------------------------------------------
+   Accessibility & robustness additions
+   --------------------------------------------------------------- */
+
+/* 스티키 헤더(64px)에 제목이 가려지지 않도록 앵커 여백 확보 */
+.hero,
+.section,
+[id] {
+  scroll-margin-top: 80px;
+}
+
+/* 키보드 사용자를 위한 본문 바로가기 */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 0 0 var(--radius) 0;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* 스크린리더 전용 텍스트 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 포커스 링 — 키보드 탐색 시에만 노출 */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* YES24 표지 로딩 실패 시 대체 블록 */
+.book-cover--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--color-ink-soft);
+  background: repeating-linear-gradient(45deg, #efe7da, #efe7da 10px, #e6dbc9 10px, #e6dbc9 20px);
+}
+
+/* 움직임 최소화 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .book-card:hover { transform: none; }
 }

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jang-seonghwan-author.netlify.app/sitemap.xml

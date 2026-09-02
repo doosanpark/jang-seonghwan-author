@@ -3,18 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>장성환 | 저자 홈페이지</title>
 <meta name="description" content="창의진교회 장성환 목사의 저자 홈페이지. 순례자의 노트, 십자가 영성 등 저서 소개.">
+<meta name="author" content="장성환">
+<meta name="theme-color" content="#faf7f2">
+
+<link rel="canonical" href="https://jang-seonghwan-author.netlify.app/">
+
+<!-- Open Graph (카카오톡 · 페이스북 · 슬랙 미리보기) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="장성환 저자 홈페이지">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="장성환 | 저자 홈페이지">
+<meta property="og:description" content="순례자의 노트, 십자가 영성 — 창의진교회 장성환 목사의 저서를 소개합니다.">
+<meta property="og:url" content="https://jang-seonghwan-author.netlify.app/">
+<meta property="og:image" content="https://jang-seonghwan-author.netlify.app/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="장성환 저자 홈페이지 — 순례자의 노트, 십자가 영성">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="장성환 | 저자 홈페이지">
+<meta name="twitter:description" content="순례자의 노트, 십자가 영성 — 창의진교회 장성환 목사의 저서를 소개합니다.">
+<meta name="twitter:image" content="https://jang-seonghwan-author.netlify.app/og-image.png">
+
+<!-- Icons -->
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "장성환",
+  "url": "https://jang-seonghwan-author.netlify.app/",
+  "jobTitle": "목사 · 저자",
+  "description": "창의진교회 담임목사이자 「순례자의 노트」 시리즈의 저자.",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "창의진교회"
+  },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "서울신학대학교" },
+    { "@type": "CollegeOrUniversity", "name": "Vancouver School of Theology" }
+  ],
+  "knowsAbout": ["기독교 영성", "교회사", "말씀묵상", "십자가 영성"]
+}
+</script>
 </head>
 <body>
 
+<a class="skip-link" href="#main">본문 바로가기</a>
+
 <header class="site-header" id="top">
-  <nav class="nav container">
+  <nav class="nav container" aria-label="주요 메뉴">
     <a href="#top" class="logo">장성환</a>
-    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
@@ -26,7 +78,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main">
 
   <section class="hero">
     <div class="container hero-inner">
@@ -40,7 +92,7 @@
     </div>
   </section>
 
-  <section id="about" class="section about">
+  <section id="about" class="section section--alt about">
     <div class="container about-grid">
       <div class="about-photo">
         <div class="photo-placeholder" aria-hidden="true">
@@ -73,10 +125,16 @@
       <div class="book-grid" id="bookGrid">
         <!-- Cards injected by script.js -->
       </div>
+      <noscript>
+        <p class="note center">
+          도서 목록을 보려면 자바스크립트를 켜주세요.
+          또는 <a href="https://www.yes24.com/product/goods/169669169" target="_blank" rel="noopener noreferrer">YES24 저자 페이지</a>에서 확인하실 수 있습니다.
+        </p>
+      </noscript>
     </div>
   </section>
 
-  <section id="ministry" class="section ministry">
+  <section id="ministry" class="section section--alt ministry">
     <div class="container">
       <h2 class="section-title center">사역 소개</h2>
       <div class="ministry-grid">
