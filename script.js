@@ -1,4 +1,4 @@
-// Book data for author 장성환 (Jang Seong-hwan)
+// 장성환(저자·사진) 참여 도서 — YES24 goodsNo 기준
 const books = [
   {
     goodsNo: "169669169",
@@ -13,6 +13,7 @@ const books = [
     title: "십자가 영성",
     subtitle: "믿음과 사랑으로 일상을 살아가는 40가지 이야기",
     role: "사진",
+    coAuthor: "글 이효재",
     date: "2026.01.22",
     outOfPrint: false,
   },
@@ -50,6 +51,42 @@ const books = [
   },
 ];
 
+// 후밀리타스에서 펴낸 그 외 도서 — 장성환은 참여 저자가 아니므로 저자명을 함께 표기한다.
+const humilitasBooks = [
+  {
+    goodsNo: "182281390",
+    title: "인간, 신을 닮은 짐",
+    subtitle: "",
+    role: "정순혁 저",
+    date: "2026.03.12",
+    outOfPrint: false,
+  },
+  {
+    goodsNo: "139912594",
+    title: "나는 기도라",
+    subtitle: "기도의 시작과 성장",
+    role: "정순혁 저",
+    date: "2024.11.29",
+    outOfPrint: false,
+  },
+  {
+    goodsNo: "118759248",
+    title: "세상 사는 하늘 백성",
+    subtitle: "교회론: 교회의 본질 이해",
+    role: "정순혁 저",
+    date: "2023.05.03",
+    outOfPrint: false,
+  },
+  {
+    goodsNo: "111102681",
+    title: "신의 지혜 신의 존재",
+    subtitle: "하나님의 존재 확인",
+    role: "정순혁 저",
+    date: "2022.07.30",
+    outOfPrint: false,
+  },
+];
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (ch) => {
     return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
@@ -73,41 +110,42 @@ function setupCoverFallbacks(grid) {
   });
 }
 
-function renderBooks() {
-  const grid = document.getElementById("bookGrid");
+function bookCardHtml(book) {
+  const coverUrl = `https://image.yes24.com/goods/${book.goodsNo}/XL`;
+  const link = `https://www.yes24.com/product/goods/${book.goodsNo}`;
+  const title = escapeHtml(book.title);
+  const subtitle = book.subtitle ? escapeHtml(book.subtitle) : "";
+  const role = escapeHtml(book.role);
+  const date = escapeHtml(book.date);
+  const credit = book.coAuthor
+    ? ` <span class="book-credit">· ${escapeHtml(book.coAuthor)}</span>`
+    : "";
+  const badge = book.outOfPrint ? '<span class="badge-outofprint">절판</span>' : "";
+  const subtitleHtml = subtitle ? `<p class="book-subtitle">${subtitle}</p>` : "";
+  const alt = subtitle ? `${title} — ${subtitle} 표지` : `${title} 표지`;
+
+  return `
+    <article class="book-card">
+      <img class="book-cover" src="${coverUrl}" alt="${alt}"
+           data-title="${title}" loading="lazy" decoding="async">
+      <div class="book-body">
+        <p class="book-role">${role}${credit}</p>
+        <h3 class="book-title">${title}${badge}</h3>
+        ${subtitleHtml}
+        <p class="book-meta">발행일 ${date}</p>
+        <a class="book-link" href="${link}" target="_blank" rel="noopener noreferrer">
+          YES24에서 보기 <span aria-hidden="true">&rarr;</span>
+          <span class="sr-only">(${title}, 새 창에서 열림)</span>
+        </a>
+      </div>
+    </article>
+  `;
+}
+
+function renderGrid(gridId, list) {
+  const grid = document.getElementById(gridId);
   if (!grid) return;
-
-  grid.innerHTML = books
-    .map((book) => {
-      const coverUrl = `https://image.yes24.com/goods/${book.goodsNo}/XL`;
-      const link = `https://www.yes24.com/product/goods/${book.goodsNo}`;
-      const title = escapeHtml(book.title);
-      const subtitle = escapeHtml(book.subtitle);
-      const role = escapeHtml(book.role);
-      const date = escapeHtml(book.date);
-      const outOfPrintBadge = book.outOfPrint
-        ? '<span class="badge-outofprint">절판</span>'
-        : "";
-
-      return `
-        <article class="book-card">
-          <img class="book-cover" src="${coverUrl}" alt="${title} — ${subtitle} 표지"
-               data-title="${title}" loading="lazy" decoding="async">
-          <div class="book-body">
-            <p class="book-role">${role}</p>
-            <h3 class="book-title">${title}${outOfPrintBadge}</h3>
-            <p class="book-subtitle">${subtitle}</p>
-            <p class="book-meta">발행일 ${date}</p>
-            <a class="book-link" href="${link}" target="_blank" rel="noopener noreferrer">
-              YES24에서 보기 <span aria-hidden="true">&rarr;</span>
-              <span class="sr-only">(${title}, 새 창에서 열림)</span>
-            </a>
-          </div>
-        </article>
-      `;
-    })
-    .join("");
-
+  grid.innerHTML = list.map(bookCardHtml).join("");
   setupCoverFallbacks(grid);
 }
 
@@ -144,7 +182,8 @@ function setYear() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderBooks();
+  renderGrid("bookGrid", books);
+  renderGrid("humilitasGrid", humilitasBooks);
   setupNav();
   setYear();
 });

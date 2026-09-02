@@ -193,20 +193,6 @@ img { max-width: 100%; display: block; }
   align-items: start;
 }
 
-.photo-placeholder {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--radius);
-  background: repeating-linear-gradient(45deg, #efe7da, #efe7da 10px, #e6dbc9 10px, #e6dbc9 20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: var(--color-ink-soft);
-  font-size: 0.9rem;
-  border: 1px solid var(--color-line);
-}
-
 .about-text p { margin: 0 0 18px; }
 
 .note {
@@ -453,4 +439,22 @@ button:focus-visible {
     transition-duration: 0.01ms !important;
   }
   .book-card:hover { transform: none; }
+}
+
+/* 공동 참여자 크레딧 (예: 십자가 영성 — 글 이효재) */
+.book-credit {
+  color: var(--color-ink-soft);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* 저자 사진 */
+.author-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-line);
 }
