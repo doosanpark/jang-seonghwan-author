@@ -1,64 +1,36 @@
-// 장성환(저자·사진) 참여 도서 — YES24 goodsNo 기준
+// 후밀리타스에서 펴낸 도서 전체 — YES24 goodsNo 기준, 발행일 내림차순
 const books = [
-  {
-    goodsNo: "169669169",
-    title: "순례자의 노트",
-    subtitle: "2026년 말씀묵상 & 기도훈련집",
-    role: "저자",
-    date: "2025.12.15",
-    outOfPrint: false,
-  },
-  {
-    goodsNo: "175527591",
-    title: "십자가 영성",
-    subtitle: "믿음과 사랑으로 일상을 살아가는 40가지 이야기",
-    role: "사진",
-    coAuthor: "글 이효재",
-    date: "2026.01.22",
-    outOfPrint: false,
-  },
-  {
-    goodsNo: "140543644",
-    title: "순례자의 노트",
-    subtitle: "2025년 말씀묵상 & 기도훈련집",
-    role: "저자",
-    date: "2024.12.21",
-    outOfPrint: false,
-  },
-  {
-    goodsNo: "124143290",
-    title: "순례자의 노트",
-    subtitle: "2024 말씀묵상 & 기도훈련집",
-    role: "저자",
-    date: "2023.12.13",
-    outOfPrint: false,
-  },
-  {
-    goodsNo: "116468638",
-    title: "순례자의 노트",
-    subtitle: "2023년 말씀묵상 & 기도훈련집",
-    role: "저자",
-    date: "2022.12.20",
-    outOfPrint: true,
-  },
-  {
-    goodsNo: "105503888",
-    title: "순례자의 노트",
-    subtitle: "2022년 말씀묵상 & 기도훈련집",
-    role: "저자",
-    date: "2021.12.10",
-    outOfPrint: true,
-  },
-];
-
-// 후밀리타스에서 펴낸 그 외 도서 — 장성환은 참여 저자가 아니므로 저자명을 함께 표기한다.
-const humilitasBooks = [
   {
     goodsNo: "182281390",
     title: "인간, 신을 닮은 짐",
     subtitle: "",
     role: "정순혁 저",
     date: "2026.03.12",
+    outOfPrint: false,
+  },
+  {
+    goodsNo: "175527591",
+    title: "십자가 영성",
+    subtitle: "믿음과 사랑으로 일상을 살아가는 40가지 이야기",
+    role: "장성환 사진",
+    coAuthor: "글 이효재",
+    date: "2026.01.22",
+    outOfPrint: false,
+  },
+  {
+    goodsNo: "169669169",
+    title: "순례자의 노트",
+    subtitle: "2026년 말씀묵상 & 기도훈련집",
+    role: "장성환 저",
+    date: "2025.12.15",
+    outOfPrint: false,
+  },
+  {
+    goodsNo: "140543644",
+    title: "순례자의 노트",
+    subtitle: "2025년 말씀묵상 & 기도훈련집",
+    role: "장성환 저",
+    date: "2024.12.21",
     outOfPrint: false,
   },
   {
@@ -70,6 +42,14 @@ const humilitasBooks = [
     outOfPrint: false,
   },
   {
+    goodsNo: "124143290",
+    title: "순례자의 노트",
+    subtitle: "2024 말씀묵상 & 기도훈련집",
+    role: "장성환 저",
+    date: "2023.12.13",
+    outOfPrint: false,
+  },
+  {
     goodsNo: "118759248",
     title: "세상 사는 하늘 백성",
     subtitle: "교회론: 교회의 본질 이해",
@@ -78,12 +58,28 @@ const humilitasBooks = [
     outOfPrint: false,
   },
   {
+    goodsNo: "116468638",
+    title: "순례자의 노트",
+    subtitle: "2023년 말씀묵상 & 기도훈련집",
+    role: "장성환 저",
+    date: "2022.12.20",
+    outOfPrint: true,
+  },
+  {
     goodsNo: "111102681",
     title: "신의 지혜 신의 존재",
     subtitle: "하나님의 존재 확인",
     role: "정순혁 저",
     date: "2022.07.30",
     outOfPrint: false,
+  },
+  {
+    goodsNo: "105503888",
+    title: "순례자의 노트",
+    subtitle: "2022년 말씀묵상 & 기도훈련집",
+    role: "장성환 저",
+    date: "2021.12.10",
+    outOfPrint: true,
   },
 ];
 
@@ -183,7 +179,6 @@ function setYear() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderGrid("bookGrid", books);
-  renderGrid("humilitasGrid", humilitasBooks);
   setupNav();
   setYear();
 });

@@ -449,12 +449,32 @@ button:focus-visible {
   letter-spacing: 0;
 }
 
-/* 저자 사진 */
-.author-photo {
+/* 출판사 엠블럼 (겸손을 뜻하는 라틴어 워드마크) */
+.emblem {
   width: 100%;
-  height: auto;
   aspect-ratio: 3 / 4;
-  object-fit: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   border-radius: var(--radius);
   border: 1px solid var(--color-line);
+  background: linear-gradient(160deg, #efe7da 0%, var(--color-bg) 100%);
+  text-align: center;
+  padding: 24px;
+}
+
+.emblem-word {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.emblem-meaning {
+  font-size: 0.95rem;
+  color: var(--color-ink-soft);
+  letter-spacing: 0.2em;
 }
