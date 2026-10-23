@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>도서 | 후밀리타스</title>
+<meta name="description" content="후밀리타스가 펴낸 도서의 상세 정보와 구매처를 안내합니다.">
+<meta name="theme-color" content="#faf7f2">
+
+<!-- 쿼리 파라미터로 책이 갈리므로 색인은 메인 페이지로 모은다. -->
+<meta name="robots" content="noindex, follow">
+
+<meta property="og:type" content="book">
+<meta property="og:site_name" content="후밀리타스">
+<meta property="og:locale" content="ko_KR">
+
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">본문 바로가기</a>
+
+<header class="site-header" id="top">
+  <nav class="nav container" aria-label="주요 메뉴">
+    <a href="index.html" class="logo" aria-label="후밀리타스 홈">
+      <span class="logo-lat" aria-hidden="true">HUMILITAS</span>
+      <span class="logo-ko" aria-hidden="true">후밀리타스</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#books">도서</a></li>
+      <li><a href="index.html#series">순례자의 노트</a></li>
+      <li><a href="index.html#authors">저자</a></li>
+      <li><a href="index.html#about">출판사</a></li>
+      <li><a href="index.html#contact">문의</a></li>
+      <li class="nav-cta"><a href="index.html#buy" class="btn btn-outline btn-sm">구매처 안내</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main" class="detail-page">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="index.html">홈</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <a href="index.html#books">도서</a>
+      <span class="sep" aria-hidden="true">/</span>
+      <span id="crumbTitle" aria-current="page">도서</span>
+    </nav>
+
+    <article class="detail" id="detail">
+      <!-- Injected by book.js -->
+    </article>
+
+    <section class="related" id="related" aria-labelledby="relatedTitle" hidden>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">MORE</p>
+          <h2 class="section-title" id="relatedTitle">함께 보면 좋은 책</h2>
+        </div>
+        <a class="link-arrow" href="index.html#books">전체 도서 &rarr;</a>
+      </div>
+      <ul class="book-grid" id="relatedGrid"></ul>
+    </section>
+
+    <noscript>
+      <p class="note">
+        도서 정보를 보려면 자바스크립트를 켜주세요.
+        <a href="index.html">홈으로 돌아가기</a>
+      </p>
+    </noscript>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo-lat">HUMILITAS</span>
+      <p>말씀 묵상과 영성 훈련, 신학 도서를 펴내는 기독교 출판사</p>
+    </div>
+    <nav class="footer-cols" aria-label="바닥글 메뉴">
+      <div>
+        <h2 class="footer-h">도서</h2>
+        <ul><li><a href="index.html#books">전체 도서</a></li><li><a href="index.html#series">순례자의 노트</a></li></ul>
+      </div>
+      <div>
+        <h2 class="footer-h">출판사</h2>
+        <ul><li><a href="index.html#about">소개</a></li><li><a href="index.html#authors">저자</a></li><li><a href="index.html#contact">문의</a></li></ul>
+      </div>
+      <div>
+        <h2 class="footer-h">구매처</h2>
+        <ul><li><a href="index.html#buy">서점 안내</a></li></ul>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> 후밀리타스. All rights reserved.</p>
+    <p>도서 정보 제공: 후밀리타스 · YES24</p>
+  </div>
+  </div>
+</footer>
+
+<script src="books-data.js"></script>
+<script src="book.js"></script>
+</body>
+</html>

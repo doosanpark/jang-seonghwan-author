@@ -36,7 +36,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
 <script type="application/ld+json">
@@ -61,112 +61,211 @@
 
 <header class="site-header" id="top">
   <nav class="nav container" aria-label="주요 메뉴">
-    <a href="#top" class="logo">후밀리타스</a>
+    <a href="#top" class="logo" data-home aria-label="후밀리타스 홈">
+      <span class="logo-lat" aria-hidden="true">HUMILITAS</span>
+      <span class="logo-ko" aria-hidden="true">후밀리타스</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about">소개</a></li>
       <li><a href="#books">도서</a></li>
-      <li><a href="#philosophy">출판 철학</a></li>
-      <li><a href="#contact">연락처</a></li>
+      <li><a href="#series">순례자의 노트</a></li>
+      <li><a href="#authors">저자</a></li>
+      <li><a href="#about">출판사</a></li>
+      <li><a href="#contact">문의</a></li>
+      <li class="nav-cta"><a href="#buy" class="btn btn-outline btn-sm">구매처 안내</a></li>
     </ul>
   </nav>
 </header>
 
 <main id="main">
 
-  <section class="hero">
-    <div class="container hero-inner">
-      <p class="eyebrow">기독교 출판사</p>
-      <h1>후밀리타스</h1>
-      <p class="hero-tagline">겸손(humilitas)이라는 이름으로, 말씀과 삶을 잇는 책을 만듭니다.</p>
-      <div class="hero-cta">
-        <a href="#books" class="btn btn-primary">도서 보러가기</a>
-        <a href="#contact" class="btn btn-ghost">문의하기</a>
-      </div>
-    </div>
-  </section>
+  <!-- 히어로: 기존 표지 커버플로우 그대로 -->
+  <section class="hero hero--coverflow" id="heroSlider" role="region"
+           aria-roledescription="캐러셀" aria-label="후밀리타스 도서 — 최신순">
+    <!-- 화면에는 표지만 두되, 문서의 대표 제목은 남겨야 하므로 낭독 전용으로 유지한다. -->
+    <h1 class="sr-only">후밀리타스 — 기독교 출판사</h1>
 
-  <section id="about" class="section section--alt about">
-    <div class="container about-grid">
-      <div class="about-photo">
-        <div class="emblem" aria-hidden="true">
-          <span class="emblem-word">HUMILITAS</span>
-          <span class="emblem-meaning">겸손</span>
-        </div>
-      </div>
-      <div class="about-text">
-        <h2 class="section-title">출판사 소개</h2>
-        <p>
-          <strong>후밀리타스(Humilitas)</strong>는 라틴어로 ‘겸손’을 뜻합니다. 스스로를 낮추어 하나님과 이웃을 향한
-          사랑을 실천했던 그리스도의 삶을 본받아, 말씀 앞에 겸손히 서는 신앙을 돕는 책을 만듭니다.
-        </p>
-        <p>
-          매년 말씀 묵상과 기도 훈련을 돕는 「순례자의 노트」 시리즈를 비롯해, 십자가 영성·교회론·기도·신앙과 삶에 관한
-          도서를 꾸준히 펴내고 있습니다.
-        </p>
-        <p class="note">
-          ※ 출판사 소개는 도서 정보를 바탕으로 우선 작성되었습니다. 더 자세한 연혁과 정보로 업데이트할 예정입니다.
-        </p>
-      </div>
+    <!-- 표지 띠는 화면 전체 폭을 쓰고 양끝이 잘리도록 컨테이너 밖에 둔다.
+         표지는 장식이므로 보조기기에는 아래 캡션(제목·저자·링크)만 노출한다. -->
+    <div class="coverflow" id="cfRoot">
+      <ul class="coverflow-track" id="cfTrack" aria-hidden="true"></ul>
+      <button type="button" class="cf-arrow cf-arrow--prev" id="cfPrev" aria-label="이전 도서">
+        <span aria-hidden="true">&#8249;</span>
+      </button>
+      <button type="button" class="cf-arrow cf-arrow--next" id="cfNext" aria-label="다음 도서">
+        <span aria-hidden="true">&#8250;</span>
+      </button>
     </div>
-  </section>
 
-  <section id="books" class="section books">
     <div class="container">
-      <h2 class="section-title center">도서</h2>
-      <p class="section-subtitle center">후밀리타스가 펴낸 도서를 소개합니다.</p>
-
-      <div class="book-grid" id="bookGrid">
-        <!-- Cards injected by script.js -->
+      <div class="cf-caption" id="cfCaption" aria-live="polite">
+        <!-- Caption injected by script.js -->
       </div>
-      <noscript>
-        <p class="note center">
-          도서 목록을 보려면 자바스크립트를 켜주세요.
-          또는 <a href="https://www.yes24.com/product/goods/169669169" target="_blank" rel="noopener noreferrer">YES24</a>에서 확인하실 수 있습니다.
-        </p>
-      </noscript>
+      <div class="cf-controls">
+        <button type="button" class="slider-btn slider-btn--play" id="cfPlay" aria-label="자동 넘김 멈추기">
+          <span aria-hidden="true" id="cfPlayIcon">&#10073;&#10073;</span>
+        </button>
+      </div>
     </div>
+
+    <noscript>
+      <div class="container">
+        <h2 class="section-title center">후밀리타스 도서</h2>
+        <ul class="noscript-books">
+          <li><a href="book.html?no=182281390">인간, 신을 닮은 짐승 — 성경의 인간 이해 및 삶의 지혜</a> <span class="note">2026.03.12</span></li>
+          <li><a href="book.html?no=175527591">십자가 영성 — 믿음과 사랑으로 일상을 살아가는 40가지 이야기</a> <span class="note">2026.01.22</span></li>
+          <li><a href="book.html?no=169669169">순례자의 노트 — 2026년 말씀묵상 &amp; 기도훈련집</a> <span class="note">2025.12.15</span></li>
+          <li><a href="book.html?no=140543644">순례자의 노트 — 2025년 말씀묵상 &amp; 기도훈련집</a> <span class="note">2024.12.21</span></li>
+          <li><a href="book.html?no=139912594">나는 기도라 — 기도의 시작과 성장</a> <span class="note">2024.11.29</span></li>
+          <li><a href="book.html?no=124143290">순례자의 노트 — 2024 말씀묵상 &amp; 기도훈련집</a> <span class="note">2023.12.13</span></li>
+          <li><a href="book.html?no=118759248">세상 사는 하늘 백성 — 교회론: 교회의 본질 이해</a> <span class="note">2023.05.03</span></li>
+          <li><a href="book.html?no=116468638">순례자의 노트 — 2023년 말씀묵상 &amp; 기도훈련집</a> <span class="note">2022.12.20</span></li>
+          <li><a href="book.html?no=111102681">신의 지혜 신의 존재 — 하나님의 존재 확인</a> <span class="note">2022.07.30</span></li>
+          <li><a href="book.html?no=105503888">순례자의 노트 — 2022년 말씀묵상 &amp; 기도훈련집</a> <span class="note">2021.12.10</span></li>
+        </ul>
+      </div>
+    </noscript>
   </section>
 
-  <section id="philosophy" class="section ministry">
+  <!-- 출판사 철학 -->
+  <section id="about" class="section manifesto" aria-labelledby="aboutTitle">
+    <p class="manifesto-mark" aria-hidden="true">HUMILITAS</p>
     <div class="container">
-      <h2 class="section-title center">출판 철학</h2>
-      <div class="ministry-grid">
-        <div class="ministry-card">
+      <p class="eyebrow center">후밀리타스 출판사는</p>
+      <h2 class="manifesto-quote" id="aboutTitle">“말씀과 신앙의 유산 앞에 겸손히 서서,<br> 누구나 읽고 삶에 적용할 수 있는 책을 펴냅니다.”</h2>
+      <ol class="values">
+        <li class="value">
+          <span class="value-num" aria-hidden="true">I</span>
           <h3>겸손 (Humilitas)</h3>
           <p>출판사 이름처럼, 말씀과 신앙의 유산 앞에 겸손히 서는 태도로 책을 기획하고 만듭니다.</p>
-        </div>
-        <div class="ministry-card">
+        </li>
+        <li class="value">
+          <span class="value-num" aria-hidden="true">II</span>
           <h3>말씀과 삶의 만남</h3>
           <p>신학적 깊이와 일상의 언어를 함께 담아, 누구나 읽고 삶에 적용할 수 있는 책을 펴냅니다.</p>
-        </div>
-        <div class="ministry-card">
+        </li>
+        <li class="value">
+          <span class="value-num" aria-hidden="true">III</span>
           <h3>꾸준한 영성 훈련</h3>
           <p>매년 새로운 말씀묵상 &amp; 기도훈련집 「순례자의 노트」를 출간하며, 십자가 영성·교회론·기도에 관한 책도 펴냅니다.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 대표 시리즈 -->
+  <section id="series" class="section series" aria-labelledby="seriesTitle">
+    <div class="container series-inner">
+      <div class="series-copy">
+        <p class="eyebrow eyebrow--gold">SERIES · 매년 새 본문으로</p>
+        <h2 class="section-title section-title--light" id="seriesTitle">순례자의 노트</h2>
+        <p class="series-sub">말씀묵상 &amp; 기도훈련집</p>
+        <p class="series-body">
+          ‘말씀으로 말씀을 이해하는’ 방식에 따라 매일 구약 한 구절과 신약 한 구절을 읽고 묵상합니다.
+          디트리히 본회퍼가 생애 마지막 순간까지 붙들고 있었다고 전해지는 헤른후트 공동체의 성경 묵상집에서 본문을 가져왔습니다.
+        </p>
+        <ol class="steps">
+          <li><span class="step-num">01</span><span class="step-name">읽기</span><span class="step-desc">구약·신약 두 구절을 반복해 읽고</span></li>
+          <li><span class="step-num">02</span><span class="step-name">필사</span><span class="step-desc">손으로 옮겨 적으며 머물고</span></li>
+          <li><span class="step-num">03</span><span class="step-name">묵상</span><span class="step-desc">두 구절이 비추는 뜻을 새기고</span></li>
+          <li><span class="step-num">04</span><span class="step-name">기도</span><span class="step-desc">말씀의 은혜로 기도에 나아갑니다</span></li>
+        </ol>
+        <!-- 최신판 링크는 script.js가 도서 데이터에서 다시 맞춘다 -->
+        <a class="btn btn-cream" id="seriesLatest" href="book.html?no=169669169">최신판 보기</a>
+      </div>
+      <ul class="series-shelf" id="seriesShelf" aria-label="순례자의 노트 연도별 도서">
+        <!-- Injected by script.js -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- 전체 도서 -->
+  <section id="books" class="section books" aria-labelledby="booksTitle">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">CATALOGUE</p>
+          <h2 class="section-title" id="booksTitle">후밀리타스의 책 <span class="title-count" id="bookCount"></span></h2>
         </div>
+        <div class="chips" id="bookFilters" role="group" aria-label="주제별로 보기">
+          <!-- Injected by script.js -->
+        </div>
+      </div>
+      <ul class="book-grid" id="bookGrid">
+        <!-- Injected by script.js -->
+      </ul>
+      <p class="sr-only" id="bookStatus" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- 저자 -->
+  <section id="authors" class="section section--alt authors" aria-labelledby="authorsTitle">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">AUTHORS</p>
+          <h2 class="section-title" id="authorsTitle">함께 쓰는 사람들</h2>
+        </div>
+      </div>
+      <div class="author-grid">
+        <article class="author-card">
+          <img class="author-photo" src="author.jpg" alt="장성환 목사" width="200" height="266" loading="lazy">
+          <div>
+            <p class="author-role">저자 · 목사 · 사진</p>
+            <h3 class="author-name">장성환</h3>
+            <p class="author-bio">매년 「순례자의 노트」를 집필하며 성도들과 함께 말씀묵상과 기도훈련의 길을 걷습니다. 「십자가 영성」에는 일상 속 은혜를 포착한 사진을 담았습니다.</p>
+            <ul class="author-books" aria-label="장성환의 책">
+              <li>순례자의 노트 2022–2026</li>
+              <li>십자가 영성 (사진)</li>
+            </ul>
+          </div>
+        </article>
+        <article class="author-card">
+          <div class="author-photo author-photo--mono" aria-hidden="true">정</div>
+          <div>
+            <p class="author-role">저자</p>
+            <h3 class="author-name">정순혁</h3>
+            <p class="author-bio">성경의 인간 이해, 기도, 교회의 본질, 하나님의 존재 — 신앙의 근본 질문을 성경 안에서 풀어낸 네 권의 책을 썼습니다.</p>
+            <ul class="author-books" aria-label="정순혁의 책">
+              <li>인간, 신을 닮은 짐승</li>
+              <li>나는 기도라</li>
+              <li>세상 사는 하늘 백성</li>
+              <li>신의 지혜 신의 존재</li>
+            </ul>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="section section--alt contact">
-    <div class="container contact-inner">
-      <h2 class="section-title center">연락처 &amp; 문의</h2>
-      <p class="section-subtitle center">저술, 출판, 제휴 관련 문의는 아래 방법으로 연락 주세요.</p>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <h3>출판사</h3>
-          <p>후밀리타스 (Humilitas)</p>
-        </div>
-        <div class="contact-card">
-          <h3>대표</h3>
-          <p>장성환</p>
-        </div>
-        <div class="contact-card">
-          <h3>이메일 / SNS</h3>
-          <p class="note">추후 업데이트 예정</p>
-        </div>
+  <!-- 구매처 · 문의 -->
+  <section id="buy" class="buy" aria-labelledby="buyTitle">
+    <div class="container buy-inner">
+      <div>
+        <p class="eyebrow">WHERE TO BUY</p>
+        <h2 class="section-title" id="buyTitle">가까운 서점에서 만나세요</h2>
+        <p class="buy-note">각 서점에서 ‘후밀리타스’를 검색한 결과로 연결됩니다. 책마다의 구매 링크는 도서 상세 페이지에 있습니다.</p>
+        <ul class="store-list">
+          <li><a class="store-link" href="https://mall.godpeople.com/?key=%ED%9B%84%EB%B0%80%EB%A6%AC%ED%83%80%EC%8A%A4" target="_blank" rel="noopener noreferrer"><span class="store-name">갓피플몰</span><span class="store-note">기독교 전문</span><span class="store-go" aria-hidden="true">&rarr;</span><span class="sr-only">(새 창에서 열림)</span></a></li>
+          <li><a class="store-link" href="https://search.kyobobook.co.kr/search?keyword=%ED%9B%84%EB%B0%80%EB%A6%AC%ED%83%80%EC%8A%A4" target="_blank" rel="noopener noreferrer"><span class="store-name">교보문고</span><span class="store-go" aria-hidden="true">&rarr;</span><span class="sr-only">(새 창에서 열림)</span></a></li>
+          <li><a class="store-link" href="https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=Book&amp;SearchWord=%ED%9B%84%EB%B0%80%EB%A6%AC%ED%83%80%EC%8A%A4" target="_blank" rel="noopener noreferrer"><span class="store-name">알라딘</span><span class="store-go" aria-hidden="true">&rarr;</span><span class="sr-only">(새 창에서 열림)</span></a></li>
+          <li><a class="store-link" href="https://www.yes24.com/Product/Search?domain=BOOK&amp;query=%ED%9B%84%EB%B0%80%EB%A6%AC%ED%83%80%EC%8A%A4" target="_blank" rel="noopener noreferrer"><span class="store-name">YES24</span><span class="store-go" aria-hidden="true">&rarr;</span><span class="sr-only">(새 창에서 열림)</span></a></li>
+        </ul>
+      </div>
+
+      <div class="contact-card" id="contact">
+        <p class="eyebrow">CONTACT</p>
+        <h2 class="contact-title">저술 · 출판 · 제휴 문의</h2>
+        <p class="contact-lead">저술, 출판, 제휴 관련 문의는 아래 연락처로 보내 주세요.</p>
+        <dl class="contact-list">
+          <div><dt>출판사</dt><dd>후밀리타스 (Humilitas)</dd></div>
+          <!-- 이메일이 정해지면: <dd><a href="mailto:주소">주소</a></dd> 로 바꾸고 아래 버튼 주석을 푼다 -->
+          <div><dt>이메일</dt><dd class="is-pending">준비 중</dd></div>
+          <div><dt>SNS</dt><dd class="is-pending">준비 중</dd></div>
+        </dl>
+        <!-- <a class="btn btn-primary btn-block" href="mailto:주소" style="margin-top:32px">문의 메일 보내기</a> -->
       </div>
     </div>
   </section>
@@ -174,12 +273,35 @@
 </main>
 
 <footer class="site-footer">
-  <div class="container footer-inner">
+  <div class="container">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo-lat">HUMILITAS</span>
+      <p>말씀 묵상과 영성 훈련, 신학 도서를 펴내는 기독교 출판사</p>
+    </div>
+    <nav class="footer-cols" aria-label="바닥글 메뉴">
+      <div>
+        <h2 class="footer-h">도서</h2>
+        <ul><li><a href="#books">전체 도서</a></li><li><a href="#series">순례자의 노트</a></li></ul>
+      </div>
+      <div>
+        <h2 class="footer-h">출판사</h2>
+        <ul><li><a href="#about">소개</a></li><li><a href="#authors">저자</a></li><li><a href="#contact">문의</a></li></ul>
+      </div>
+      <div>
+        <h2 class="footer-h">구매처</h2>
+        <ul><li><a href="#buy">서점 안내</a></li></ul>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
     <p>&copy; <span id="year"></span> 후밀리타스. All rights reserved.</p>
-    <p class="footer-note">도서 정보 제공: 후밀리타스 · YES24</p>
+    <p>도서 정보 제공: 후밀리타스 · YES24</p>
+  </div>
   </div>
 </footer>
 
+<script src="books-data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
